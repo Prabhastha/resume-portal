@@ -1,7 +1,7 @@
 package io.portfolio.resumeportal;
 
 import io.portfolio.resumeportal.models.MyUserDetails;
-import io.portfolio.resumeportal.models.User;
+import io.portfolio.resumeportal.models.SecurityUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUserName(userName);
+        Optional<SecurityUser> user = userRepository.findByUserName(userName);
 
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 

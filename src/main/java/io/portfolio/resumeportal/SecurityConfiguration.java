@@ -22,11 +22,17 @@ public class SecurityConfiguration  {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
       return
-        http.csrf().disable().cors().disable().authorizeHttpRequests()
+        http.authorizeHttpRequests()
                 .requestMatchers("/edit").authenticated()
-                .requestMatchers("/*").permitAll()
+                .requestMatchers("/**").permitAll()
+               // .requestMatchers("/static/**").permitAll()
+
+//                .requestMatchers("/view/*").permitAll()
+//                .requestMatchers("/h2-console").permitAll()
+
                 .and()
                 .userDetailsService(myUserDetailsService)
+                .headers(headers -> headers.frameOptions().sameOrigin())
                 .formLogin()
                 .and().build();
 

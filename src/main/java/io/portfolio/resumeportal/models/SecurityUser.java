@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "suser")
+public class SecurityUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +15,18 @@ public class User {
     private String password;
     private boolean active;
     private String roles;
+
+    public SecurityUser(int id, String userName, String password, boolean active, String roles) {
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.active = active;
+        this.roles = roles;
+    }
+
+    public SecurityUser() {
+
+    }
 
     public int getId() {
         return id;
